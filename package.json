@@ -1,7 +1,6 @@
 {
   "name": "gigiporra-payments",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
   "scripts": {
     "dev": "nodemon ./bin/www"
   },

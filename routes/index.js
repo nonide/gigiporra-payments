@@ -1,16 +1,12 @@
 
-const express = require('express')
-var router = express.Router();
+const config = require('../lib/utils').getConfig()
+const stripe = require("stripe")(config.sk_token)
 
-const yaml = require('js-yaml')
-const fs = require('fs')
-const config = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));
-const stripe = require("stripe")(config.sk_token);
-
+const router = require('express').Router()
 
 router.post('/pay', function(req, res) {
   const source = req.body.stripeToken
-  const amount = 300
+  const amount = config.amount
 
   try {
     const charge = stripe.charges.create({
@@ -23,9 +19,8 @@ router.post('/pay', function(req, res) {
     res.status(200).send('Payment done')
   } catch (err) {
     console.log(err)
-    res.status(500).send('Error creating charge in Stripe')
+    res.status(500).send('Error creating charge in Stripe' + err)
   }
-
 })
 
-module.exports = router;
+module.exports = router

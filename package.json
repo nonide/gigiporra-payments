@@ -1,12 +1,11 @@
 {
   "name": "gigiporra-payments",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "cors": "^2.8.4",
-    "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "js-yaml": "^3.12.0",

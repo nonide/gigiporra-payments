@@ -4,27 +4,26 @@ var router = express.Router();
 
 const yaml = require('js-yaml')
 const fs = require('fs')
-try {
-  const config = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));
-  const stripe = require("stripe")(config.sk_live);
-} catch (e) {
-  console.log(e)
-}
+const config = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));
+const stripe = require("stripe")(config.sk_token);
 
 
-router.post('/pay', function(req) {
+router.post('/pay', function(req, res) {
   const source = req.body.stripeToken
+  const amount = 300
 
   try {
     const charge = stripe.charges.create({
-      amount: 300,
+      amount,
       currency: 'eur',
       description: 'Gigiporra payment',
       source
     })
-    console.log('payment done')
+    console.log(`New payment of ${amount/100} EUR with token ${source}`)
+    res.status(200).send('Payment done')
   } catch (err) {
     console.log(err)
+    res.status(500).send('Error creating charge in Stripe')
   }
 
 })

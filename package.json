@@ -5,6 +5,9 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
+  "now": {
+    "files": ["config.yml"]
+  },
   "dependencies": {
     "cors": "^2.8.4",
     "express": "~4.16.0",

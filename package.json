@@ -6,7 +6,7 @@
     "dev": "nodemon app.js"
   },
   "now": {
-    "alias": "gigiporra-payments",
+    "alias": "gigiporra-payments.now.sh",
     "files": [
       "config.yml",
       "package.json",

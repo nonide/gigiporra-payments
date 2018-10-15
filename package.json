@@ -6,7 +6,12 @@
     "dev": "nodemon app.js"
   },
   "now": {
-    "files": ["config.yml"]
+    "files": [
+      "config.yml",
+      "package.json",
+      "app.js",
+      "src"
+    ]
   },
   "dependencies": {
     "cors": "^2.8.4",
